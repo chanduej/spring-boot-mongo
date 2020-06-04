@@ -13,12 +13,12 @@ node{
     
     
     stage('Build Docker Image'){
-        sh 'docker build -t dockerhandson/spring-boot-mongo .'
+        sh 'docker build -t lucky0524/spring-boot-mongo .'
     }
     
     stage('Push Docker Image'){
         withCredentials([string(credentialsId: 'dockerhubcredentials', variable: 'dockerhubcredentials')]) {
-          sh "docker login -u lucky0524 -p ${DOKCER_HUB_PASSWORD}"
+          sh "docker login -u lucky0524 -p ${dockerhubcredentials}"
         }
         sh 'docker push lucky0524/spring-boot-mongo'
      }
